@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qeydiyyat - Bootcamp</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            max-width: 900px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 600px;
+        }
+
+        .left-panel {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .left-panel h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .left-panel p {
+            font-size: 16px;
+            line-height: 1.6;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        .features {
+            text-align: left;
+            font-size: 14px;
+        }
+
+        .features li {
+            list-style: none;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .features li:before {
+            content: "✓";
+            margin-right: 10px;
+            font-size: 20px;
+        }
+
+        .logo {
+            font-size: 48px;
+            margin-bottom: 30px;
+        }
+
+        .right-panel {
+            padding: 60px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            overflow-y: auto;
+        }
+
+        .right-panel h2 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+
+        .subtitle {
+            color: #999;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            color: #333;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .password-requirements {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            font-size: 13px;
+            color: #666;
+        }
+
+        .requirement {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .requirement.met {
+            color: #28a745;
+        }
+
+        .requirement.unmet {
+            color: #dc3545;
+        }
+
+        .requirement:before {
+            content: "○";
+            margin-right: 8px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .requirement.met:before {
+            content: "✓";
+            color: #28a745;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+            margin-right: 10px;
+            margin-top: 5px;
+        }
+
+        .checkbox-group label {
+            margin-bottom: 0;
+            font-weight: 400;
+            font-size: 13px;
+        }
+
+        .checkbox-group a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .signup-btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .signup-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .signup-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .login-link a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+        .error-message {
+            background: #fee;
+            color: #c33;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            display: none;
+            font-size: 14px;
+        }
+
+        .success-message {
+            background: #efe;
+            color: #3c3;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            display: none;
+            font-size: 14px;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                min-height: auto;
+            }
+
+            .left-panel {
+                padding: 40px 30px;
+                order: 2;
+            }
+
+            .right-panel {
+                padding: 40px 30px;
+                order: 1;
+            }
+
+            .left-panel h1 {
+                font-size: 24px;
+            }
+
+            .features {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left-panel">
+            <div class="logo">🚀</div>
+            <h1>Bootcamp-a Qoşul</h1>
+            <p>Hazırlanmış mühəndislər qrupunun bir hissəsi ol</p>
+            <ul class="features">
+                <li>Sertifikasyon Proqramı</li>
+                <li>Etibarlı Mentor Dəstəyi</li>
+                <li>Karyera Yardımı</li>
+                <li>Cəmiyyət Şəbəkəsi</li>
+            </ul>
+        </div>
+
+        <div class="right-panel">
+            <h2>Yeni Hesab</h2>
+            <p class="subtitle">Qeydiyyatdan keçin və başlayın</p>
+
+            <div class="error-message" id="errorMessage"></div>
+            <div class="success-message" id="successMessage"></div>
+
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="fullName">Tam Adınız</label>
+                    <input 
+                        type="text" 
+                        id="fullName" 
+                        name="fullName" 
+                        placeholder="Pərviz Əliyev"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Ünvanı</label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        placeholder="sizin@email.com"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Şifrə</label>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        name="password" 
+                        placeholder="••••••••"
+                        required
+                    >
+                </div>
+
+                <div class="password-requirements" id="passwordRequirements">
+                    <div class="requirement unmet" id="req-length">En azı 8 simvol</div>
+                    <div class="requirement unmet" id="req-lower">Kiçik hərf (a-z)</div>
+                    <div class="requirement unmet" id="req-upper">Böyük hərf (A-Z)</div>
+                    <div class="requirement unmet" id="req-number">Rəqəm (0-9)</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmPassword">Şifrəni Təsdiqlə</label>
+                    <input 
+                        type="password" 
+                        id="confirmPassword" 
+                        name="confirmPassword" 
+                        placeholder="••••••••"
+                        required
+                    >
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="terms" name="terms" required>
+                    <label for="terms">
+                        <a href="#">Şərtləri</a> və 
+                        <a href="#">Məxfilik Siyasətini</a> qəbul edirəm
+                    </label>
+                </div>
+
+                <button type="submit" class="signup-btn" id="signupBtn">
+                    Qeydiyyatdan Keç
+                </button>
+            </form>
+
+            <div class="login-link">
+                Artıq hesabınız var? <a href="index.html">Daxil Olun</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const registerForm = document.getElementById('registerForm');
+        const signupBtn = document.getElementById('signupBtn');
+        const errorMessage = document.getElementById('errorMessage');
+        const successMessage = document.getElementById('successMessage');
+        const passwordInput = document.getElementById('password');
+        const confirmPasswordInput = document.getElementById('confirmPassword');
+
+        // Şifrə validasiyası real-time
+        passwordInput.addEventListener('input', () => {
+            const password = passwordInput.value;
+            
+            updateRequirement('req-length', password.length >= 8);
+            updateRequirement('req-lower', /[a-z]/.test(password));
+            updateRequirement('req-upper', /[A-Z]/.test(password));
+            updateRequirement('req-number', /\d/.test(password));
+        });
+
+        function updateRequirement(id, isMet) {
+            const element = document.getElementById(id);
+            if (isMet) {
+                element.classList.remove('unmet');
+                element.classList.add('met');
+            } else {
+                element.classList.remove('met');
+                element.classList.add('unmet');
+            }
+        }
+
+        registerForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const fullName = document.getElementById('fullName').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const password = passwordInput.value;
+            const confirmPassword = confirmPasswordInput.value;
+
+            errorMessage.style.display = 'none';
+            successMessage.style.display = 'none';
+
+            // Validasiyalar
+            if (!fullName || fullName.length < 3) {
+                showError('Tam ad ən azı 3 hərf olmalıdır');
+                return;
+            }
+
+            if (!email || !isValidEmail(email)) {
+                showError('Keçərli email daxil edin');
+                return;
+            }
+
+            if (!password || password.length < 8) {
+                showError('Şifrə ən azı 8 simvol olmalıdır');
+                return;
+            }
+
+            if (!/[a-z]/.test(password) || !/[A-Z]/.test(password) || !/\d/.test(password)) {
+                showError('Şifrə böyük hərf, kiçik hərf və rəqəm olmalıdır');
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                showError('Şifrələr uyğun gəlmir');
+                return;
+            }
+
+            if (!document.getElementById('terms').checked) {
+                showError('Şərtləri qəbul etməlisiniz');
+                return;
+            }
+
+            // Loading state
+            signupBtn.disabled = true;
+            signupBtn.innerHTML = '<span class="loading"></span> Qeydiyyat edilir...';
+
+            try {
+                const response = await fetch('/api/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email, password, confirmPassword, fullName })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    showSuccess('Qeydiyyat uğurlu! Yönləndirilirsiniz...');
+                    
+                    if (data.token) {
+                        localStorage.setItem('authToken', data.token);
+                        localStorage.setItem('userEmail', email);
+                        localStorage.setItem('userName', fullName);
+                    }
+
+                    setTimeout(() => {
+                        window.location.href = '/dashboard.html';
+                    }, 1500);
+                } else {
+                    showError(data.message || 'Qeydiyyat uğursuz oldu');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showError('Bağlantı xətası. Zəhmət olmasa yenidən cəhd edin.');
+            } finally {
+                signupBtn.disabled = false;
+                signupBtn.innerHTML = 'Qeydiyyatdan Keç';
+            }
+        });
+
+        function showError(message) {
+            errorMessage.textContent = message;
+            errorMessage.style.display = 'block';
+        }
+
+        function showSuccess(message) {
+            successMessage.textContent = message;
+            successMessage.style.display = 'block';
+        }
+
+        function isValidEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootcamp Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            max-width: 900px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 500px;
+        }
+
+        .left-panel {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .left-panel h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .left-panel p {
+            font-size: 16px;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        .logo {
+            font-size: 48px;
+            margin-bottom: 30px;
+        }
+
+        .right-panel {
+            padding: 60px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .right-panel h2 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+
+        .subtitle {
+            color: #999;
+            margin-bottom: 40px;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            color: #333;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        .remember-forgot input[type="checkbox"] {
+            width: auto;
+            margin-right: 8px;
+        }
+
+        .forgot-link {
+            color: #667eea;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .forgot-link:hover {
+            text-decoration: underline;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .login-btn:active {
+            transform: translateY(0);
+        }
+
+        .signup-link {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .signup-link a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .signup-link a:hover {
+            text-decoration: underline;
+        }
+
+        .error-message {
+            background: #fee;
+            color: #c33;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            display: none;
+            font-size: 14px;
+        }
+
+        .success-message {
+            background: #efe;
+            color: #3c3;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            display: none;
+            font-size: 14px;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                min-height: auto;
+            }
+
+            .left-panel {
+                padding: 40px 30px;
+                order: 2;
+            }
+
+            .right-panel {
+                padding: 40px 30px;
+                order: 1;
+            }
+
+            .left-panel h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left-panel">
+            <div class="logo">🚀</div>
+            <h1>Bootcamp-a Xoş Gəlmisiniz</h1>
+            <p>Bitirenlərin üçün xüsusi login portalı. Kurslarınıza qayıdın və biliklərinizi inkişaf etdirin.</p>
+        </div>
+
+        <div class="right-panel">
+            <h2>Daxil Ol</h2>
+            <p class="subtitle">Hesabınıza giriş edin</p>
+
+            <div class="error-message" id="errorMessage"></div>
+            <div class="success-message" id="successMessage"></div>
+
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">Email Ünvanı</label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        placeholder="sizin@email.com"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Şifrə</label>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        name="password" 
+                        placeholder="••••••••"
+                        required
+                    >
+                </div>
+
+                <div class="remember-forgot">
+                    <label style="margin-bottom: 0;">
+                        <input type="checkbox" name="remember"> Məni Xatırla
+                    </label>
+                    <a href="#" class="forgot-link" onclick="handleForgotPassword(event)">Şifrəni Unuttum?</a>
+                </div>
+
+                <button type="submit" class="login-btn" id="loginBtn">
+                    Daxil Ol
+                </button>
+            </form>
+
+            <div class="signup-link">
+                Hesabınız yoxdur? <a href="#" onclick="handleSignup(event)">Qeydiyyatdan Keçin</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const loginForm = document.getElementById('loginForm');
+        const loginBtn = document.getElementById('loginBtn');
+        const errorMessage = document.getElementById('errorMessage');
+        const successMessage = document.getElementById('successMessage');
+
+        // Demo istifadəçiləri
+        const demoUsers = [
+            { email: 'test@bootcamp.com', password: 'Password123' },
+            { email: 'user@bootcamp.com', password: 'Test1234' }
+        ];
+
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            const remember = document.querySelector('input[name="remember"]').checked;
+
+            errorMessage.style.display = 'none';
+            successMessage.style.display = 'none';
+
+            // Form validasiyası
+            if (!email || !password) {
+                showError('Email və şifrə tələb olunur');
+                return;
+            }
+
+            if (!isValidEmail(email)) {
+                showError('Zəhmət olmasa, keçərli email daxil edin');
+                return;
+            }
+
+            // Loading state
+            loginBtn.disabled = true;
+            loginBtn.innerHTML = '<span class="loading"></span> Giriş edilir...';
+
+            try {
+                // Backend API çağırışı
+                const response = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email, password, remember })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    showSuccess('Uğur! Yönləndirilirsiniz...');
+                    
+                    // Token-i saxla
+                    if (data.token) {
+                        localStorage.setItem('authToken', data.token);
+                        localStorage.setItem('userEmail', email);
+                    }
+
+                    // 2 saniyə sonra yönləndir
+                    setTimeout(() => {
+                        window.location.href = '/dashboard.html';
+                    }, 1500);
+                } else {
+                    showError(data.message || 'Giriş uğursuz oldu. Zəhmət olmasa yenidən cəhd edin.');
+                }
+            } catch (error) {
+                console.error('Xəta:', error);
+                showError('Bağlantı xətası. Zəhmət olmasa yenidən cəhd edin.');
+            } finally {
+                loginBtn.disabled = false;
+                loginBtn.innerHTML = 'Daxil Ol';
+            }
+        });
+
+        function showError(message) {
+            errorMessage.textContent = message;
+            errorMessage.style.display = 'block';
+        }
+
+        function showSuccess(message) {
+            successMessage.textContent = message;
+            successMessage.style.display = 'block';
+        }
+
+        function isValidEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+
+        function handleForgotPassword(e) {
+            e.preventDefault();
+            alert('Şifrə sıfırlama funksiyası həmin qurulacaq');
+        }
+
+        function handleSignup(e) {
+            e.preventDefault();
+            alert('Qeydiyyat forması həmin qurulacaq');
+        }
+
+        // Sayfanın yükləndiyini yoxla
+        window.addEventListener('load', () => {
+            const token = localStorage.getItem('authToken');
+            if (token) {
+                document.getElementById('email').value = localStorage.getItem('userEmail') || '';
+                document.querySelector('input[name="remember"]').checked = true;
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+{
+  "name": "bootcamp-login-system",
+  "version": "1.0.0",
+  "description": "Bootcamp Bitirənləri üçün Login Sistemi",
+  "main": "api/login.js",
+  "scripts": {
+    "start": "node api/login.js",
+    "dev": "vercel dev",
+    "deploy": "vercel"
+  },
+  "keywords": [
+    "bootcamp",
+    "login",
+    "authentication"
+  ],
+  "author": "Bootcamp Team",
+  "license": "MIT",
+  "dependencies": {
+    "jsonwebtoken": "^9.0.0"
+  },
+  "devDependencies": {
+    "vercel": "^28.0.0"
+  }
+}
