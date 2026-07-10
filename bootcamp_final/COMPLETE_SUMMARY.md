@@ -116,10 +116,10 @@ vercel
 
 ```
 ┌─────────────────────────────────┐
-│     Login Page (index.html)      │
+│     Login Page (index.html)     │
 │  ───────────────────────────────│
 │  - Email/Şifrə formu            │
-│  - Remember me checkbox          │
+│  - Remember me checkbox         │
 │  - Error/Success messages        │
 │  - Mobile responsive             │
 └─────────────────────────────────┘

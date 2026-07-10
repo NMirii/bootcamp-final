@@ -277,13 +277,6 @@ export function showMessage(message, type = 'info', duration = 3000) {
         animation: slideIn 0.3s ease;
     `;
 
-    // Tip əsasında rəng
-    const colors = {
-        success: '#3c3 (background) #fff (text)',
-        error: '#c33 (background) #fff (text)',
-        warning: '#fb3 (background) #000 (text)',
-        info: '#36f (background) #fff (text)'
-    };
 
     if (type === 'success') {
         messageDiv.style.background = '#28a745';

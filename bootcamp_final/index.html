@@ -268,7 +268,7 @@
                     <label style="margin-bottom: 0;">
                         <input type="checkbox" name="remember"> Məni Xatırla
                     </label>
-                    <a href="#" class="forgot-link" onclick="handleForgotPassword(event)">Şifrəni Unuttum?</a>
+                    <a href="reset-password.html" class="forgot-link">Şifrəni Unuttum?</a>
                 </div>
 
                 <button type="submit" class="login-btn" id="loginBtn">
@@ -277,7 +277,7 @@
             </form>
 
             <div class="signup-link">
-                Hesabınız yoxdur? <a href="#" onclick="handleSignup(event)">Qeydiyyatdan Keçin</a>
+                Hesabınız yoxdur? <a href="register.html">Qeydiyyatdan Keçin</a>
             </div>
         </div>
     </div>
@@ -370,15 +370,7 @@
             return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
         }
 
-        function handleForgotPassword(e) {
-            e.preventDefault();
-            alert('Şifrə sıfırlama funksiyası həmin qurulacaq');
-        }
 
-        function handleSignup(e) {
-            e.preventDefault();
-            alert('Qeydiyyat forması həmin qurulacaq');
-        }
 
         // Sayfanın yükləndiyini yoxla
         window.addEventListener('load', () => {

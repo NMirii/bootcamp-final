@@ -19,6 +19,6 @@
     "jsonwebtoken": "^9.0.0"
   },
   "devDependencies": {
-    "vercel": "^28.0.0"
+    "vercel": "latest"
   }
 }

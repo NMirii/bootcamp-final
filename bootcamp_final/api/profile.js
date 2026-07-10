@@ -91,7 +91,7 @@ function parseToken(token) {
         const parts = token.split('.');
         if (parts.length !== 3) return null;
 
-        const payload = JSON.parse(atob(parts[1]));
+        const payload = JSON.parse(Buffer.from(parts[1], 'base64').toString());
         
         // Tokenin vaxtı keçibmi yoxla
         if (payload.exp && payload.exp < Math.floor(Date.now() / 1000)) {
